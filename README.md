@@ -19,6 +19,12 @@ CREATE TABLE newjerseybus
 )
 
 
+SELECT title, description, pubdate, ts
+FROM public.newjerseybus
+
+
+
+
 ````
 
 #### Flink SQL Table Build
