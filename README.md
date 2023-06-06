@@ -2,10 +2,31 @@
 CDC with NiFi, Kafka Connect, Flink SQL, Cloudera Data in Motion
 
 
-#### Flink SQL
+#### Flink SQL Table Build
 
 ````
 
+CREATE TABLE  `postgres_cdc_table_1686070440` (
+  `col_str` STRING,
+  `col_int` INT,
+  `col_ts` TIMESTAMP(3),
+   WATERMARK FOR `col_ts` AS col_ts - INTERVAL '5' SECOND
+) WITH (
+  'connector' = 'postgres-cdc', -- Must be set to 'postgres-cdc' to configure this connector.
+  'database-name' = 'tspann', -- Database name of the PostgreSQL server to monitor.
+  'hostname' = 'kafka', -- IP address or hostname of the PostgreSQL database server.
+  'password' = 'tspann', -- Password to use when connecting to the PostgreSQL database server.
+  'schema-name' = 'public', -- Table name of the PostgreSQL server to monitor.
+  'table-name' = '...', -- Table name of the PostgreSQL server to monitor.
+  'username' = 'tspann' -- Name of the PostgreSQL database to use when connecting to the PostgreSQL database server.
+  'port' = '5432' -- Integer port number of the PostgreSQL database server.
+);
+
+````
+
+#### Flink SQL Full CDC Postgres table info
+
+````
 
 CREATE TABLE  `postgres_cdc_table_1686070440` (
   `col_str` STRING,
