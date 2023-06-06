@@ -31,6 +31,29 @@ FROM public.newjerseybus
 
 ````
 
+CREATE TABLE  `postgres_cdc_newjerseybus` (
+    `title` STRING,
+    `description` STRING,
+    `link` STRING,
+    `guid` STRING,
+    `advisoryAlert` STRING,
+    `pubDate` STRING,
+    `ts` STRING,
+    `companyname` STRING,
+    `uuid` STRING,
+    `servicename` STRING
+) WITH (
+  'connector' = 'postgres-cdc', -- Must be set to 'postgres-cdc' to configure this connector.
+  'database-name' = 'tspann', -- Database name of the PostgreSQL server to monitor.
+  'hostname' = 'kafka', -- IP address or hostname of the PostgreSQL database server.
+  'password' = 'tspann', -- Password to use when connecting to the PostgreSQL database server.
+  'schema-name' = 'public', -- Table name of the PostgreSQL server to monitor.
+  'table-name' = '...', -- Table name of the PostgreSQL server to monitor.
+  'username' = 'tspann' -- Name of the PostgreSQL database to use when connecting to the PostgreSQL database server.
+  'port' = '5432' -- Integer port number of the PostgreSQL database server.
+);
+
+
 CREATE TABLE  `postgres_cdc_table_1686070440` (
   `col_str` STRING,
   `col_int` INT,
