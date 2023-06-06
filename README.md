@@ -1,6 +1,25 @@
 # FLaNK-CDC
 CDC with NiFi, Kafka Connect, Flink SQL, Cloudera Data in Motion
 
+#### Postgresql table
+
+````
+CREATE TABLE newjerseybus
+(
+    title VARCHAR(255), 
+    description VARCHAR(255),
+    link VARCHAR(255),
+    guid   VARCHAR(255),
+    advisoryAlert VARCHAR(255),
+    pubDate VARCHAR(255), 
+    ts VARCHAR(255),
+    companyname VARCHAR(255),
+    uuid VARCHAR(255),
+    servicename VARCHAR(255)
+)
+
+
+````
 
 #### Flink SQL Table Build
 
