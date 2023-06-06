@@ -27,11 +27,36 @@ FROM public.newjerseybus
 
 ````
 
+
+#### Kafka table
+
+````
+CREATE TABLE  `kafka_ibmnewjerseybus` (
+  `title` VARCHAR(2147483647),
+  `description` VARCHAR(2147483647),
+  `pubDate` VARCHAR(2147483647),
+  `advisoryAlert` VARCHAR(2147483647),
+  `companyname` VARCHAR(2147483647),
+  `servicename` VARCHAR(2147483647),
+  `guid` VARCHAR(2147483647),
+  `link` VARCHAR(2147483647),
+  `uuid` VARCHAR(2147483647),
+  `ts` BIGINT NOT NULL
+) WITH (
+  'connector' = 'kafka', 
+  'format' = 'json', 
+  'properties.bootstrap.servers' = 'kafka:9092'
+  'topic' = 'ibm.newjerseybus'
+);
+
+````
+
+
 #### Flink SQL Table Build
 
 ````
 
-CREATE TABLE  `postgres_cdc_newjerseybus` (
+CREATE TABLE `postgres_cdc_newjerseybus` (
     `title` STRING,
     `description` STRING,
     `link` STRING,
@@ -43,14 +68,14 @@ CREATE TABLE  `postgres_cdc_newjerseybus` (
     `uuid` STRING,
     `servicename` STRING
 ) WITH (
-  'connector' = 'postgres-cdc', -- Must be set to 'postgres-cdc' to configure this connector.
-  'database-name' = 'tspann', -- Database name of the PostgreSQL server to monitor.
-  'hostname' = 'kafka', -- IP address or hostname of the PostgreSQL database server.
-  'password' = 'tspann', -- Password to use when connecting to the PostgreSQL database server.
-  'schema-name' = 'public', -- Table name of the PostgreSQL server to monitor.
-  'table-name' = '...', -- Table name of the PostgreSQL server to monitor.
-  'username' = 'tspann' -- Name of the PostgreSQL database to use when connecting to the PostgreSQL database server.
-  'port' = '5432' -- Integer port number of the PostgreSQL database server.
+  'connector' = 'postgres-cdc', 
+  'database-name' = 'tspann', 
+  'hostname' = 'kafka',
+  'password' = 'tspann', 
+  'schema-name' = 'public',
+  'table-name' = 'newjerseybus',
+  'username' = 'tspann',
+  'port' = '5432'
 );
 
 
