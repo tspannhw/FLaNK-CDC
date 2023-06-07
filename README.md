@@ -148,7 +148,7 @@ CREATE TABLE  `postgres_newjerseytransit` (
     `pubDate` STRING,
     `ts` STRING,
     `companyname` STRING,
-    `uuid` STRING,
+    `uuid` STRING primary key,
     `servicename` STRING
 ) WITH (
   'connector' = 'jdbc', 
@@ -158,6 +158,15 @@ CREATE TABLE  `postgres_newjerseytransit` (
   'username' = 'tspann'
 );
 
+
+````
+
+#### Insert flink sql
+
+````
+insert into postgres_newjerseytransit
+select `title`, `description`, `link`, `guid`, `advisoryAlert`, `pubDate`, cast(`ts` as string) as `ts`, `companyname`, `uuid`, `servicename`
+from `sr1`.`default_database`.`newjerseybus`
 
 ````
 
