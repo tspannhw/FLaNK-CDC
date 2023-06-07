@@ -96,8 +96,9 @@ CREATE TABLE `postgres_cdc_newjerseybus` (
 ) WITH (
   'connector' = 'postgres-cdc', 
   'database-name' = 'tspann', 
-  'hostname' = 'kafka',
+  'hostname' = '192.168.1.153',
   'password' = 'tspann', 
+  'decoding.plugin.name' = 'pgoutput',
   'schema-name' = 'public',
   'table-name' = 'newjerseybus',
   'username' = 'tspann',
