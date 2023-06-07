@@ -19,10 +19,24 @@ CREATE TABLE newjerseybus
 )
 
 
+CREATE TABLE newjerseytransit
+(
+    title VARCHAR(255), 
+    description VARCHAR(255),
+    link VARCHAR(255),
+    guid   VARCHAR(255),
+    advisoryAlert VARCHAR(255),
+    pubDate VARCHAR(255), 
+    ts VARCHAR(255),
+    companyname VARCHAR(255),
+    uuid VARCHAR(255),
+    servicename VARCHAR(255)
+)
+
+
+
 SELECT title, description, pubdate, ts
 FROM public.newjerseybus
-
-
 
 
 ````
@@ -76,6 +90,26 @@ CREATE TABLE kafka_newjerseybus (
 );
 
 
+CREATE TABLE kafka_newjerseybus_sink (
+    `title` STRING,
+    `description` STRING,
+    `link` STRING,
+    `guid` STRING,
+    `advisoryAlert` STRING,
+    `pubDate` STRING,
+    `ts` STRING,
+    `companyname` STRING,
+    `uuid` STRING,
+    `servicename` STRING
+) WITH (
+ 'connector' = 'kafka',
+'format' = 'json',
+'scan.startup.mode' = 'group-offsets',
+'topic' = 'kafka_newjerseybus',
+'properties.group.id' = 'flink1-group-id',
+'properties.auto.offset.reset' = 'earliest'
+);
+
 ````
 
 #### Flink SQL Table Build
@@ -105,22 +139,25 @@ CREATE TABLE `postgres_cdc_newjerseybus` (
   'port' = '5432'
 );
 
-
-CREATE TABLE  `postgres_cdc_table_1686070440` (
-  `col_str` STRING,
-  `col_int` INT,
-  `col_ts` TIMESTAMP(3),
-   WATERMARK FOR `col_ts` AS col_ts - INTERVAL '5' SECOND
+CREATE TABLE  `postgres_newjerseytransit` (
+    `title` STRING,
+    `description` STRING,
+    `link` STRING,
+    `guid` STRING,
+    `advisoryAlert` STRING,
+    `pubDate` STRING,
+    `ts` STRING,
+    `companyname` STRING,
+    `uuid` STRING,
+    `servicename` STRING
 ) WITH (
-  'connector' = 'postgres-cdc', -- Must be set to 'postgres-cdc' to configure this connector.
-  'database-name' = 'tspann', -- Database name of the PostgreSQL server to monitor.
-  'hostname' = 'kafka', -- IP address or hostname of the PostgreSQL database server.
-  'password' = 'tspann', -- Password to use when connecting to the PostgreSQL database server.
-  'schema-name' = 'public', -- Table name of the PostgreSQL server to monitor.
-  'table-name' = '...', -- Table name of the PostgreSQL server to monitor.
-  'username' = 'tspann' -- Name of the PostgreSQL database to use when connecting to the PostgreSQL database server.
-  'port' = '5432' -- Integer port number of the PostgreSQL database server.
+  'connector' = 'jdbc', 
+  'table-name' = 'newjerseytransit', 
+  'url' = 'jdbc:postgresql://192.168.1.153:5432/tspann',
+  'password' = 'tspann',
+  'username' = 'tspann'
 );
+
 
 ````
 
@@ -197,6 +234,32 @@ CREATE TABLE  `postgres_cdc_table_1686070440` (
 );
 
 
+
+````
+
+
+### Example Faker Table
+
+````
+CREATE TABLE customer_test (
+ `first_name` STRING,
+ `last_name` STRING,
+ `age` INT,
+ `city`  STRING,
+ `country`  STRING,
+ `email`  STRING,
+ `phone_number`  STRING
+) WITH (
+'connector' = 'faker',
+'fields.first_name.expression' = '#{name.firstName}',
+'fields.last_name.expression' = '#{name.lastName}',
+'fields.age.expression' = '#{number.numberBetween ''18'',''100''}',
+'fields.city.expression' = '#{address.cityName}',
+'fields.country.expression' = '#{country.name}',
+'fields.email.expression' = '#{internet.emailAddress}',
+'fields.phone_number.expression' = '#{phone_number.cellPhone}',
+'rows-per-second' = '10'
+);
 
 ````
 
