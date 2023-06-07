@@ -51,6 +51,32 @@ CREATE TABLE  `kafka_ibmnewjerseybus` (
 
 ````
 
+#### Flink SQL receiver table
+
+````
+
+CREATE TABLE kafka_newjerseybus (
+    `title` STRING,
+    `description` STRING,
+    `link` STRING,
+    `guid` STRING,
+    `advisoryAlert` STRING,
+    `pubDate` STRING,
+    `ts` STRING,
+    `companyname` STRING,
+    `uuid` STRING,
+    `servicename` STRING
+) WITH (
+ 'connector' = 'kafka: Local Kafka',
+'format' = 'json',
+'scan.startup.mode' = 'group-offsets',
+'topic' = 'kafka_newjerseybus',
+'properties.group.id' = 'flink1-group-id',
+'properties.auto.offset.reset' = 'latest'
+);
+
+
+````
 
 #### Flink SQL Table Build
 
