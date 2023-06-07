@@ -172,3 +172,19 @@ CREATE TABLE  `postgres_cdc_table_1686070440` (
 
 
 ````
+
+
+### Example Bus Data
+
+|title|description|link|guid|advisoryalert|pubdate|ts|companyname|uuid|servicename|
+|-----|-----------|----|----|-------------|-------|--|-----------|----|-----------|
+|BUS 1 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||Jun 06, 2023 10:45:32 AM|1686083086335|newjersey|d18a2b0e-f59c-4ac8-b479-0322c9fd45bb|bus|
+|BUS 2 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||Jun 06, 2023 10:45:32 AM|1686083086335|newjersey|ea24f013-ad60-4ac0-b8b3-ee81356faf09|bus|
+|BUS 6 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||Jun 06, 2023 10:45:32 AM|1686083086336|newjersey|ef3c7f59-2a40-4004-953b-2a4b4775d146|bus|
+|BUS 10 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||Jun 06, 2023 10:45:32 AM|1686083086336|newjersey|1cc9b0ce-f7e0-47ec-b09d-e2e442c01f02|bus|
+|BUS 13 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||Jun 06, 2023 10:45:32 AM|1686083086336|newjersey|e87ba787-3b2e-4914-b82d-aad71323343f|bus|
+|BUS 22 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||Jun 06, 2023 10:45:32 AM|1686083086337|newjersey|c8cde5d9-4a38-471f-ac16-06173a623ada|bus|
+|BUS 25 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||Jun 06, 2023 10:45:32 AM|1686083086337|newjersey|f5825247-fac5-4bb6-81ea-5108f40c2f94|bus|
+|BUS 28 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||Jun 06, 2023 10:45:32 AM|1686083086338|newjersey|bddb840a-9d8b-4607-a19a-e38e16f019e1|bus|
+|BUS 29 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||
+
