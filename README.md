@@ -164,9 +164,23 @@ CREATE TABLE  `postgres_newjerseytransit` (
 #### Insert flink sql
 
 ````
+
+
+not working yet
+
+
+insert into postgres_newjerseytransit
+select * from postgres_cdc_newjerseybus
+
 insert into postgres_newjerseytransit
 select `title`, `description`, `link`, `guid`, `advisoryAlert`, `pubDate`, cast(`ts` as string) as `ts`, `companyname`, `uuid`, `servicename`
 from `sr1`.`default_database`.`newjerseybus`
+
+insert into postgres_newjerseytransit
+select `title`, `description`, `link`, `guid`, `advisoryAlert`, `pubDate`, cast(`ts` as string) as `ts`, `companyname`, `uuid`, `servicename`
+from `sr1`.`default_database`.`newjerseybus`
+
+
 
 ````
 
