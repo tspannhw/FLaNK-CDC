@@ -17,7 +17,7 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 1.  NiFi consumes from Kafka Topic: **tspann.public.newjerseybus**
 2.  Debezium JSON events are parsed by NiFi
 3.  NiFi sends **after** record to ForkEnrichment
-4.  NiFi sends plain **after** record as inserts to Oracle 12 database/schema/table: FREEPDB1.TSPANN.NEWJERSEYBUS
+4.  NiFi sends plain **after** record as inserts to Oracle 23 database/schema/table: FREEPDB1.TSPANN.NEWJERSEYBUS
 5.  Debezium Meta Data attributes are joined with **after** records to build annotated JSON record.
 6.  NiFi sends this enhanced JSON event to the Kafka Topic:   ${sourcetable}-cdc ie. newjerseybus-cdc.
 
