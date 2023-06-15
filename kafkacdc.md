@@ -7,12 +7,12 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 1.  Use SMM to easily configure.
 2.  Kafka Connect Source -> CLASS NAME: io.debezium.connector.postgresql.PostgresConnector
 3.  Uses pgoutput to consume from Postgresql database via Debezium
-4.  Data to produced to Kafka Topic: tspann.public.newjerseybus
+4.  Data to produced to Kafka Topic: **tspann.public.newjerseybus**
 5.  CDC is in Stream
 
 **CDC/Debezium/Kafka Consumer**
 
-1.  NiFi consumes from Kafka Topic: tspann.public.newjerseybus
+1.  NiFi consumes from Kafka Topic: **tspann.public.newjerseybus**
 2.  Debezium JSON events are parsed by NiFi
 3.  NiFi sends **after** record to ForkEnrichment
 4.  NiFi sends plain **after** record as inserts to Oracle 12 database/schema/table: FREEPDB1.TSPANN.NEWJERSEYBUS
@@ -64,128 +64,30 @@ CREATE TABLE newjerseybus
 
 ````
 
-
-#### Kafka table
-
-````
-CREATE TABLE  `kafka_ibmnewjerseybus` (
-  `title` VARCHAR(2147483647),
-  `description` VARCHAR(2147483647),
-  `pubDate` VARCHAR(2147483647),
-  `advisoryAlert` VARCHAR(2147483647),
-  `companyname` VARCHAR(2147483647),
-  `servicename` VARCHAR(2147483647),
-  `guid` VARCHAR(2147483647),
-  `link` VARCHAR(2147483647),
-  `uuid` VARCHAR(2147483647),
-  `ts` BIGINT NOT NULL
-) WITH (
-  'connector' = 'kafka', 
-  'format' = 'json', 
-  'properties.bootstrap.servers' = 'kafka:9092'
-  'topic' = 'ibm.newjerseybus'
-);
+### Kafka Connect Parms
 
 ````
-
-#### Flink SQL receiver table
-
-````
-
-CREATE TABLE kafka_newjerseybus (
-    `title` STRING,
-    `description` STRING,
-    `link` STRING,
-    `guid` STRING,
-    `advisoryAlert` STRING,
-    `pubDate` STRING,
-    `ts` STRING,
-    `companyname` STRING,
-    `uuid` STRING,
-    `servicename` STRING
-) WITH (
- 'connector' = 'kafka: Local Kafka',
-'format' = 'json',
-'scan.startup.mode' = 'group-offsets',
-'topic' = 'kafka_newjerseybus',
-'properties.group.id' = 'flink1-group-id',
-'properties.auto.offset.reset' = 'latest'
-);
+	"connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+	"database.dbname": "tspann",
+	"database.history.kafka.bootstrap.servers": "${cm-agent:ENV:KAFKA_BOOTSTRAP_SERVERS}",
+	"database.history.kafka.topic": "schema-changes.bus-postgres",
+	"database.hostname": "192.168.1.153",
+	"database.password": "tspann",
+	"database.port": "5432",
+	"database.server.id": "184055",
+	"database.server.name": "tspann",
+	"database.user": "tspann",
+	"name": "postgresqlsource",
+	"plugin.name": "pgoutput",
+	"secret.properties": "database.password",
+	"tasks.max": "1"
+````		
 
 
-CREATE TABLE kafka_newjerseybus_sink (
-    `title` STRING,
-    `description` STRING,
-    `link` STRING,
-    `guid` STRING,
-    `advisoryAlert` STRING,
-    `pubDate` STRING,
-    `ts` STRING,
-    `companyname` STRING,
-    `uuid` STRING,
-    `servicename` STRING
-) WITH (
- 'connector' = 'kafka',
-'format' = 'json',
-'scan.startup.mode' = 'group-offsets',
-'topic' = 'kafka_newjerseybus',
-'properties.group.id' = 'flink1-group-id',
-'properties.auto.offset.reset' = 'earliest'
-);
+### Resources
 
-````
-
-#### Flink SQL Table Build
-
-````
-
-CREATE TABLE `postgres_cdc_newjerseybus` (
-    `title` STRING,
-    `description` STRING,
-    `link` STRING,
-    `guid` STRING,
-    `advisoryAlert` STRING,
-    `pubDate` STRING,
-    `ts` STRING,
-    `companyname` STRING,
-    `uuid` STRING,
-    `servicename` STRING
-) WITH (
-  'connector' = 'postgres-cdc', 
-  'database-name' = 'tspann', 
-  'hostname' = '192.168.1.153',
-  'password' = 'tspann', 
-  'decoding.plugin.name' = 'pgoutput',
-  'schema-name' = 'public',
-  'table-name' = 'newjerseybus',
-  'username' = 'tspann',
-  'port' = '5432'
-);
-
-CREATE TABLE  `postgres_newjerseytransit` (
-    `title` STRING,
-    `description` STRING,
-    `link` STRING,
-    `guid` STRING,
-    `advisoryAlert` STRING,
-    `pubDate` STRING,
-    `ts` STRING,
-    `companyname` STRING,
-    `uuid` STRING primary key,
-    `servicename` STRING
-) WITH (
-  'connector' = 'jdbc', 
-  'table-name' = 'newjerseytransit', 
-  'url' = 'jdbc:postgresql://192.168.1.153:5432/tspann',
-  'password' = 'tspann',
-  'username' = 'tspann'
-);
-
-
-````
-
-
-Kafka topic tspann.public.newjerseybus
+* https://github.com/tspannhw/ApacheConAtHome2020
+* https://github.com/tspannhw/CloudDemo2021
 
 
 ### Example Bus Data
@@ -203,7 +105,7 @@ Kafka topic tspann.public.newjerseybus
 |BUS 29 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||
 
 
-### Oracle
+### Oracle Table Setup
 
 ````
 bash-4.4$ sqlplus sys/Cloudera2023 as sysdba
@@ -213,7 +115,6 @@ Version 23.2.0.0.0
 
 Copyright (c) 1982, 2023, Oracle.  All rights reserved.
 
-
 Connected to:
 Oracle Database 23c Free, Release 23.0.0.0.0 - Developer-Release
 Version 23.2.0.0.0
@@ -222,27 +123,11 @@ SQL> ALTER SESSION SET CONTAINER=FREEPDB1;
 
 Session altered.
 
-SQL> CREATE USER TEST IDENTIFIED BY test QUOTA UNLIMITED ON USERS;
+SQL> CREATE USER NIFI IDENTIFIED BY test QUOTA UNLIMITED ON USERS;
 
 User created.
 
-SQL> GRANT CONNECT, RESOURCE TO TEST;
-
-Grant succeeded.
-
 SQL> GRANT CONNECT, RESOURCE to NIFI;
-
-Grant succeeded.
-
-SQL> GRANT CONNECT, RESOURCE to TSPANN;
-
-Grant succeeded.
-
-SQL> GRANT ALL PRIVILEGES TO TEST;
-
-Grant succeeded.
-
-SQL> GRANT ALL PRIVILEGES TO TSPANN;
 
 Grant succeeded.
 
@@ -275,5 +160,5 @@ CREATE TABLE TSPANN.NEWJERSEYBUS (
 );
 CREATE UNIQUE INDEX SYS_C008226 ON TSPANN.NEWJERSEYBUS (UUID);
 
-
 ````
+Tim Spann
