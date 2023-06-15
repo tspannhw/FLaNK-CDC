@@ -2,6 +2,8 @@
 
 CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
+![cdc](https://github.com/tspannhw/FLaNK-CDC/blob/main/workingoncdc.jpg?raw=true)
+
 **Data Flow**
 
 1.  Use SMM to easily configure.
