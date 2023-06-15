@@ -301,3 +301,78 @@ CREATE TABLE customer_test (
 |BUS 28 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||Jun 06, 2023 10:45:32 AM|1686083086338|newjersey|bddb840a-9d8b-4607-a19a-e38e16f019e1|bus|
 |BUS 29 - Jun 06, 2023 10:45:32 AM|NJ TRANSIT Bus Customer Satisfaction Survey – Effective Immediately |https://www.njtransit.com/node/1613627|https://www.njtransit.com/node/1613627||
 
+
+### Oracle
+
+````
+bash-4.4$ sqlplus sys/Cloudera2023 as sysdba
+
+SQL*Plus: Release 23.0.0.0.0 - Developer-Release on Thu Jun 15 19:49:07 2023
+Version 23.2.0.0.0
+
+Copyright (c) 1982, 2023, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 23c Free, Release 23.0.0.0.0 - Developer-Release
+Version 23.2.0.0.0
+
+SQL> ALTER SESSION SET CONTAINER=FREEPDB1;
+
+Session altered.
+
+SQL> CREATE USER TEST IDENTIFIED BY test QUOTA UNLIMITED ON USERS;
+
+User created.
+
+SQL> GRANT CONNECT, RESOURCE TO TEST;
+
+Grant succeeded.
+
+SQL> GRANT CONNECT, RESOURCE to NIFI;
+
+Grant succeeded.
+
+SQL> GRANT CONNECT, RESOURCE to TSPANN;
+
+Grant succeeded.
+
+SQL> GRANT ALL PRIVILEGES TO TEST;
+
+Grant succeeded.
+
+SQL> GRANT ALL PRIVILEGES TO TSPANN;
+
+Grant succeeded.
+
+SQL> GRANT ALL PRIVILEGES TO NIFI;
+
+Grant succeeded.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> EXIT;
+Disconnected from Oracle Database 23c Free, Release 23.0.0.0.0 - Developer-Release
+Version 23.2.0.0.0
+
+-- DROP TABLE TSPANN.NEWJERSEYBUS;
+
+CREATE TABLE TSPANN.NEWJERSEYBUS (
+	TITLE VARCHAR2(255) NULL,
+	DESCRIPTION VARCHAR2(255) NULL,
+	LINK VARCHAR2(255) NULL,
+	GUID VARCHAR2(255) NULL,
+	ADVISORYALERT VARCHAR2(255) NULL,
+	PUBDATE VARCHAR2(255) NULL,
+	TS VARCHAR2(255) NULL,
+	COMPANYNAME VARCHAR2(255) NULL,
+	UUID VARCHAR2(255) NOT NULL,
+	SERVICENAME VARCHAR2(255) NULL,
+	CONSTRAINT SYS_C008226 PRIMARY KEY (UUID)
+);
+CREATE UNIQUE INDEX SYS_C008226 ON TSPANN.NEWJERSEYBUS (UUID);
+
+
+````
