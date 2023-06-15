@@ -2,6 +2,25 @@
 
 CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
+**Data Flow**
+
+1.  Kafka Connect Source -> CLASS NAME: io.debezium.connector.postgresql.PostgresConnector
+2.  Uses pgoutput to consume from Postgresql database via Debezium
+3.  Data to produced to Kafka Topic: tspann.public.newjerseybus
+4.  CDC is in Stream
+
+**CDC/Debezium/Kafka Consumer**
+
+1.  NiFi consumes from Kafka Topic: tspann.public.newjerseybus
+2.  Debezium JSON events are parsed by NiFi
+3.  NiFi sends **after** record to ForkEnrichment
+4.  NiFi sends plain **after** record as inserts to Oracle 12 database/schema/table: FREEPDB1.TSPANN.NEWJERSEYBUS
+5.  Debezium Meta Data attributes are joined with **after** records to build annotated JSON record.
+6.  NiFi sends this enhanced JSON event to the Kafka Topic:   ${sourcetable}-cdc ie. newjerseybus-cdc.
+
+For development, use the free dockerized Oracle:   [https://hub.docker.com/r/gvenzl/oracle-free](https://hub.docker.com/r/gvenzl/oracle-free)
+
+
 #### Postgresql table
 
 ````
@@ -18,22 +37,6 @@ CREATE TABLE newjerseybus
     uuid VARCHAR(255),
     servicename VARCHAR(255)
 )
-
-
-CREATE TABLE newjerseytransit
-(
-    title VARCHAR(255), 
-    description VARCHAR(255),
-    link VARCHAR(255),
-    guid   VARCHAR(255),
-    advisoryAlert VARCHAR(255),
-    pubDate VARCHAR(255), 
-    ts VARCHAR(255),
-    companyname VARCHAR(255),
-    uuid VARCHAR(255),
-    servicename VARCHAR(255)
-)
-
 
 
 ````
