@@ -1,6 +1,6 @@
 # FLaNK-CDC
 
-CDC with NiFi, Kafka Connect, Flink SQL, Cloudera Data in Motion
+CDC with NiFi, Flink CDC, Flink SQL, Cloudera Data in Motion
 
 #### Data Flow
 
