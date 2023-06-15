@@ -4,10 +4,11 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
 **Data Flow**
 
-1.  Kafka Connect Source -> CLASS NAME: io.debezium.connector.postgresql.PostgresConnector
-2.  Uses pgoutput to consume from Postgresql database via Debezium
-3.  Data to produced to Kafka Topic: tspann.public.newjerseybus
-4.  CDC is in Stream
+1.  Use SMM to easily configure.
+2.  Kafka Connect Source -> CLASS NAME: io.debezium.connector.postgresql.PostgresConnector
+3.  Uses pgoutput to consume from Postgresql database via Debezium
+4.  Data to produced to Kafka Topic: tspann.public.newjerseybus
+5.  CDC is in Stream
 
 **CDC/Debezium/Kafka Consumer**
 
@@ -20,6 +21,28 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
 For development, use the free dockerized Oracle:   [https://hub.docker.com/r/gvenzl/oracle-free](https://hub.docker.com/r/gvenzl/oracle-free)
 
+
+#### Kafka Connect Scripts
+
+````
+curl -X GET "http://localhost:8585/api/v1/admin/kafka-connect/connectors" -H "accept: application/json"
+
+{"connectors":{"postgresqlsource":{"name":"postgresqlsource","workerId":"172.18.0.8:28083","type":"source","state":"RUNNING","trace":null,"config":{"connector.class":"io.debezium.connector.postgresql.PostgresConnector","database.dbname":"tspann","database.history.kafka.bootstrap.servers":"${cm-agent:ENV:KAFKA_BOOTSTRAP_SERVERS}","database.history.kafka.topic":"schema-changes.bus-postgres","database.hostname":"192.168.1.153","database.password":"tspann","database.port":"5432","database.server.id":"184055","database.server.name":"tspann","database.user":"tspann","name":"postgresqlsource","plugin.name":"pgoutput","secret.properties":"database.password","tasks.max":"1"},"tasks":{"0":{"workerId":"172.18.0.8:28083","state":"RUNNING","trace":null}},"topics":["tspann.public.newjerseybus"]}}}
+
+curl -X GET "http://localhost:8585/api/v1/admin/metrics/connect/workers" -H "accept: application/json"
+
+curl -X PUT "http://localhost:8585/api/v1/admin/kafka-connect/connectors/$schemaname" -H "accept: application/json" -H "Content-Type: application/json" -d @postgresqlsource.json
+
+curl -X GET "http://localhost:8585/api/v1/admin/kafka-connect/connector-plugins" -H "accept: application/json"
+[{"type":"sink","version":"0.0.1.7.2.16.0-287","class":"com.cloudera.dim.kafka.connect.hdfs.HdfsSinkConnector"},{"type":"sink","version":"0.0.1.7.2.16.0-287","class":"com.cloudera.dim.kafka.connect.s3.S3SinkConnector"},{"type":"source","version":"1.9.5.Final","class":"io.debezium.connector.db2.Db2Connector"},{"type":"source","version":"1.8.0.Final","class":"io.debezium.connector.mysql.MySqlConnector"},{"type":"source","version":"1.8.0.Final","class":"io.debezium.connector.oracle.OracleConnector"},{"type":"source","version":"1.8.0.Final","class":"io.debezium.connector.postgresql.PostgresConnector"},{"type":"source","version":"1.8.0.Final","class":"io.debezium.connector.sqlserver.SqlServerConnector"},{"type":"source","version":"1","class":"org.apache.kafka.connect.mirror.MirrorCheckpointConnector"},{"type":"source","version":"1","class":"org.apache.kafka.connect.mirror.MirrorHeartbeatConnector"},{"type":"source","version":"1","class":"org.apache.kafka.connect.mirror.MirrorSourceConnector"},{"type":"sink","version":"1.18.0.2.4.3.0-63","class":"org.apache.nifi.kafka.connect.StatelessNiFiSinkConnector"},{"type":"source","version":"1.18.0.2.4.3.0-63","class":"org.apache.nifi.kafka.connect.StatelessNiFiSourceConnector"}]
+
+curl -X GET "http://localhost:8585/api/v1/admin/kafka-connect/is-configured" -H "accept: application/json"
+true
+
+curl -X GET "http://localhost:8585/api/v1/admin/metrics/producers?state=all&duration=LAST_THIRTY_DAYS" -H "accept: application/json"
+
+
+````
 
 #### Postgresql table
 
