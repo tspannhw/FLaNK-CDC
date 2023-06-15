@@ -2,8 +2,9 @@
 
 CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
-![cdc](https://github.com/tspannhw/FLaNK-CDC/blob/main/workingoncdc.jpg?raw=true)
 
+
+![cdcdiagram](https://github.com/tspannhw/FLaNK-CDC/blob/main/cdckafkaconnectdebeziumnifioracle.png?raw=true)
 **Data Flow**
 
 1.  Use SMM to easily configure.
@@ -23,6 +24,7 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
 For development, use the free dockerized Oracle:   [https://hub.docker.com/r/gvenzl/oracle-free](https://hub.docker.com/r/gvenzl/oracle-free)
 
+![cdc](https://github.com/tspannhw/FLaNK-CDC/blob/main/workingoncdc.jpg?raw=true)
 
 #### Kafka Connect Scripts
 
