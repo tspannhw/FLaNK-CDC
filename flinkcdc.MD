@@ -1,4 +1,4 @@
-# FLaNK-CDC
+# FLaNK-CDC with Flink
 
 CDC with NiFi, Flink CDC, Flink SQL, Cloudera Data in Motion
 
