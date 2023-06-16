@@ -26,6 +26,10 @@ For development, use the free dockerized Oracle:   [https://hub.docker.com/r/gve
 
 ![cdc](https://github.com/tspannhw/FLaNK-CDC/blob/main/workingoncdc.jpg?raw=true)
 
+#### Video Walkthru 
+
+[https://www.youtube.com/watch?v=NPWglZW3rig&ab_channel=DatainMotion](https://www.youtube.com/watch?v=NPWglZW3rig&ab_channel=DatainMotion)
+
 #### Kafka Connect Scripts
 
 ````
