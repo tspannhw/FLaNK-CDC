@@ -22,6 +22,21 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 5.  Debezium Meta Data attributes are joined with **after** records to build annotated JSON record.
 6.  NiFi sends this enhanced JSON event to the Kafka Topic:   ${sourcetable}-cdc ie. newjerseybus-cdc.
 
+
+
+[nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/addDebeziumFields0.jpg?raw=true)
+[nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/addDebeziumFields.jpg?raw=true)
+
+EvaluateJsonPath (Parse JSON) - extract Debezium Event Fields
+
+[nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/buildJSON.jpg?raw=true)
+
+Extract "after" json
+
+
+
+
+
 For development, use the free dockerized Oracle:   [https://hub.docker.com/r/gvenzl/oracle-free](https://hub.docker.com/r/gvenzl/oracle-free)
 
 ![cdc](https://github.com/tspannhw/FLaNK-CDC/blob/main/workingoncdc.jpg?raw=true)
@@ -170,3 +185,14 @@ CREATE UNIQUE INDEX SYS_C008226 ON TSPANN.NEWJERSEYBUS (UUID);
 
 ````
 Tim Spann
+
+
+
+#### Cat Data Capture
+
+
+![cat](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/IMG_7651.jpeg?raw=true)
+
+![cat2](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/IMG_7658.jpg?raw=true)
+
+
