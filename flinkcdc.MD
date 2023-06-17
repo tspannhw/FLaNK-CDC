@@ -11,6 +11,7 @@ CDC with NiFi, Flink CDC, Flink SQL, Cloudera Data in Motion
 3. Flink uses Debezium connect to read data in Debezium JSON format
 4. Query CDC Table.   select * from postgres_cdc_newjerseybus
 
+![tim](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cyberpunkcitytimnano.jpg?raw=true)
 
 ### References
 
