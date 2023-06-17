@@ -6,6 +6,8 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
 ![cdcdiagram](https://github.com/tspannhw/FLaNK-CDC/blob/main/cdckafkaconnectdebeziumnifioracle.png?raw=true)
 
+Video: https://www.youtube.com/watch?v=NPWglZW3rig
+
 
 Since we are out of the office and working remote, I need our relational database records to join us and be sent offsite.   Our physical tables may be empty, but our database ones are not.   Let's get that data streaming and useful.
 
