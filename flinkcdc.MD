@@ -4,6 +4,9 @@ CDC with NiFi, Flink CDC, Flink SQL, Cloudera Data in Motion
 
 ![cdcflinkflow](https://github.com/tspannhw/FLaNK-CDC/blob/main/flinkcdcdebeziumnifi.png?raw=true)
 
+
+Video: https://www.youtube.com/watch?v=NPWglZW3rig
+
 #### Data Flow
 
 1. NiFi insert data into Postgresql via PutDatabaseRecord
