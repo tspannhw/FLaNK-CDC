@@ -13,6 +13,7 @@ CDC with NiFi, Flink CDC, Flink SQL, Cloudera Data in Motion
 4. Query CDC Table.   select * from postgres_cdc_newjerseybus
 
 SQL Results from CDC Table
+
 ![flink](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/flinksqlquerycdctable.jpg?raw=true)
 
 ![flink](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/flinksqlcdc.jpg?raw=true)
