@@ -25,6 +25,8 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
 Consume from Kafka Topic
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/consumeKafka1.jpg?raw=true)
+![nifi2](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/consumekafka2.jpg?raw=true)
+
 
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/addDebeziumFields0.jpg?raw=true)
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/addDebeziumFields.jpg?raw=true)
@@ -37,9 +39,16 @@ Extract "after" json
 
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cdcattributesToJson.jpg?raw=true)
 
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/forktokafkaandoracle.jpg?raw=true)
+
+
 Build New JSON Record: After the Fork Enrichment, Add Debezium Fields
 
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cdcattributesToJson.jpg?raw=true)
+
+After new JSON enhancement, let's join those two records together automagically
+
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/joinenrichmentcdc.jpg?raw=true)
 
 The Final Kafka Message Produced From our New Fields
 
