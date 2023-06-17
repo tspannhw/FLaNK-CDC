@@ -8,12 +8,32 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 **Data Flow**
 
 1.  Use SMM to easily configure.
-2.  Kafka Connect Source -> CLASS NAME: io.debezium.connector.postgresql.PostgresConnector
-3.  Uses pgoutput to consume from Postgresql database via Debezium
-4.  Data to produced to Kafka Topic: **tspann.public.newjerseybus**
-5.  CDC is in Stream
+
+![kc](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/kconnectsetup.jpg?raw=true)
+
+3.  Kafka Connect Source -> CLASS NAME: io.debezium.connector.postgresql.PostgresConnector
+
+![kc](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/kconnectdeploy.jpg?raw=true)
+
+4.  Uses pgoutput to consume from Postgresql database via Debezium
+5.  Data to produced to Kafka Topic: **tspann.public.newjerseybus**
+
+![kc](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/kconnectdeployed.jpg?raw=true)
+
+6.  CDC is in Stream
+
+![kc](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/kafkaconnectcdcpostgresql.jpg?raw=true)
+
+As shown below using REST, we can export the Kafka Connect configuration as JSON.
+
+7.  Monitor CDC Stream in SMM
+
+![smm](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/monitorsmmkconnectpgsqlcdc.jpg?raw=true)
+
 
 **CDC/Debezium/Kafka Consumer**
+
+![flow](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/nififlowpgsqlcdc1.jpg?raw=true)
 
 1.  NiFi consumes from Kafka Topic: **tspann.public.newjerseybus**
 2.  Debezium JSON events are parsed by NiFi
@@ -54,6 +74,11 @@ The Final Kafka Message Produced From our New Fields
 
 ![kafka](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cdcenhancedkafkamessage.jpg?raw=true)
 
+
+
+We can now look at our "after" regular records in Kafka via SMM.
+
+![smm](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/newjerseybuscdc.jpg?raw=true)
 
 
 For development, use the free dockerized Oracle:   [https://hub.docker.com/r/gvenzl/oracle-free](https://hub.docker.com/r/gvenzl/oracle-free)
