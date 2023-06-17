@@ -5,6 +5,12 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
 
 ![cdcdiagram](https://github.com/tspannhw/FLaNK-CDC/blob/main/cdckafkaconnectdebeziumnifioracle.png?raw=true)
+
+
+Since we are out of the office and working remote, I need our relational database records to join us and be sent offsite.
+
+![office](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/officemeeting.jpg?raw=true)
+
 **Data Flow**
 
 1.  Use SMM to easily configure.
@@ -32,6 +38,8 @@ As shown below using REST, we can export the Kafka Connect configuration as JSON
 
 
 **CDC/Debezium/Kafka Consumer**
+
+We will now read those Debezium CDC events with NiFi and send those changed Postgresql table rows to Oracle
 
 ![flow](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/nififlowpgsqlcdc1.jpg?raw=true)
 
@@ -61,6 +69,17 @@ Extract "after" json
 
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/forktokafkaandoracle.jpg?raw=true)
 
+Insert records from CDC into Oracle, automagically.
+
+![nifio](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/putdatabaserecordOracle.jpg?raw=true)
+
+Our table design to receive Postgresql records into Oracle 23.   When I started work, my first Oracle version was 5.
+
+![oracle](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/oracletable.jpg?raw=true)
+
+Rows have landed in our table.
+
+![oracle](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/oracletablerows.jpg?raw=true)
 
 Build New JSON Record: After the Fork Enrichment, Add Debezium Fields
 
@@ -70,15 +89,16 @@ After new JSON enhancement, let's join those two records together automagically
 
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/joinenrichmentcdc.jpg?raw=true)
 
+Produce this new joined record to Kafka
+
+![nifik](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/produceKafkacdc.jpg?raw=true)
+
 The Final Kafka Message Produced From our New Fields
 
 ![kafka](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cdcenhancedkafkamessage.jpg?raw=true)
 
-
-
-We can now look at our "after" regular records in Kafka via SMM.
-
 ![smm](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/newjerseybuscdc.jpg?raw=true)
+
 
 
 For development, use the free dockerized Oracle:   [https://hub.docker.com/r/gvenzl/oracle-free](https://hub.docker.com/r/gvenzl/oracle-free)
@@ -230,6 +250,10 @@ CREATE UNIQUE INDEX SYS_C008226 ON TSPANN.NEWJERSEYBUS (UUID);
 ````
 Tim Spann
 
+
+#### Looking at NiFI REST Calls / Internals
+
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/nifirestapi.jpg?raw=true)
 
 
 #### Cat Data Capture
