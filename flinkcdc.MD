@@ -9,9 +9,19 @@ CDC with NiFi, Flink CDC, Flink SQL, Cloudera Data in Motion
 1. NiFi insert data into Postgresql via PutDatabaseRecord
 2. Create FLink Postgresql-CDC virtual table
 3. Flink uses Debezium connect to read data in Debezium JSON format
+
 4. Query CDC Table.   select * from postgres_cdc_newjerseybus
 
+SQL Results from CDC Table
+![flink](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/flinksqlquerycdctable.jpg?raw=true)
+
+![flink](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/flinksqlcdc.jpg?raw=true)
+
+
 ![tim](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cyberpunkcitytimnano.jpg?raw=true)
+
+
+
 
 ### References
 
