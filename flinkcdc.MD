@@ -34,6 +34,19 @@ SQL Results from CDC Table
 - https://debezium.io/documentation/reference/1.7/
 - Debezium Json
 
+CDC is database change events, nothing to do with Disease.
+
+### NiFi CDC and Pseudo-CDC / ETL / ELT
+- https://community.cloudera.com/t5/Community-Articles/Incrementally-Streaming-RDBMS-Data-to-Your-Hadoop-DataLake/ta-p/247927
+- https://community.cloudera.com/t5/Community-Articles/Ingesting-RDBMS-Data-As-New-Tables-Arrive-Automagically-into/ta-p/246214
+- https://community.cloudera.com/t5/Community-Articles/Incremental-Fetch-in-NiFi-with-QueryDatabaseTable/ta-p/247073
+- https://community.cloudera.com/t5/Community-Articles/Simple-Change-Data-Capture-CDC-with-SQL-Selects-via-Apache/ta-p/308390
+- https://nikhil-suthar-bigdata.medium.com/cdc-with-apache-nifi-65020c748ff5
+- https://www.cdc.gov/nbs/modernization/stories/202304.html
+- https://github.com/apache/nifi/pull/6053/files
+
+
+
 
 #### Postgresql table
 
