@@ -36,6 +36,24 @@ As shown below using REST, we can export the Kafka Connect configuration as JSON
 
 ![smm](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/monitorsmmkconnectpgsqlcdc.jpg?raw=true)
 
+8.  Check out Swagger/REST API
+
+Let's run some API calls.
+
+![api](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/smmswagger1.jpg?raw=true)
+
+![swagger](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/smmconnectors.jpg?raw=true)
+
+![rest](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/smmsinkmetrics.jpg?raw=true)
+
+
+Now let's use those CDC events.
+
+Debezium CDC Kafka Messagges have arrived.
+
+![smm](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/smmkafkatspannpublcnewjerseybuscdcrecords.jpg?raw=true)
+
+
 
 **CDC/Debezium/Kafka Consumer**
 
@@ -52,8 +70,17 @@ We will now read those Debezium CDC events with NiFi and send those changed Post
 
 
 Consume from Kafka Topic
+
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/consumeKafka1.jpg?raw=true)
 ![nifi2](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/consumekafka2.jpg?raw=true)
+
+Set the schema name for schema registry lookups
+
+![nifi3](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/setschemaname.jpg?raw=true)
+
+Let's split it out to one record at a time.
+
+![nifi4](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/splitrecord.jpg?raw=true)
 
 
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/addDebeziumFields0.jpg?raw=true)
@@ -63,11 +90,24 @@ EvaluateJsonPath (Parse JSON) - extract Debezium Event Fields
 
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/buildJSON.jpg?raw=true)
 
+Let convert and filter via QueryRecord.   We need to add a filter, this is placeholder for now.   
+
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/queryrecord.jpg?raw=true)
+
+Let's filter out empty records with routing
+
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/routeAwayEmpty.jpg?raw=true)
+
+
+
 Extract "after" json
 
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cdcattributesToJson.jpg?raw=true)
 
 ![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/forktokafkaandoracle.jpg?raw=true)
+
+
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/sendToOraclepost.jpg?raw=true)
 
 Insert records from CDC into Oracle, automagically.
 
@@ -177,6 +217,8 @@ CREATE TABLE newjerseybus
 * https://github.com/tspannhw/CloudDemo2021
 
 
+![nifieverywhere](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/timshadownifi.png?raw=true)
+
 ### Example Bus Data
 
 |title|description|link|guid|advisoryalert|pubdate|ts|companyname|uuid|servicename|
@@ -258,6 +300,7 @@ Tim Spann
 
 #### Cat Data Capture
 
+![team](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/teamflank.jpg?raw=true)
 
 ![cat](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/IMG_7651.jpeg?raw=true)
 
