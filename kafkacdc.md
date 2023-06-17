@@ -23,17 +23,27 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 6.  NiFi sends this enhanced JSON event to the Kafka Topic:   ${sourcetable}-cdc ie. newjerseybus-cdc.
 
 
+Consume from Kafka Topic
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/consumeKafka1.jpg?raw=true)
 
-[nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/addDebeziumFields0.jpg?raw=true)
-[nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/addDebeziumFields.jpg?raw=true)
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/addDebeziumFields0.jpg?raw=true)
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/addDebeziumFields.jpg?raw=true)
 
 EvaluateJsonPath (Parse JSON) - extract Debezium Event Fields
 
-[nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/buildJSON.jpg?raw=true)
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/buildJSON.jpg?raw=true)
 
 Extract "after" json
 
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cdcattributesToJson.jpg?raw=true)
 
+Build New JSON Record: After the Fork Enrichment, Add Debezium Fields
+
+![nifi](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cdcattributesToJson.jpg?raw=true)
+
+The Final Kafka Message Produced From our New Fields
+
+![kafka](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/cdcenhancedkafkamessage.jpg?raw=true)
 
 
 
