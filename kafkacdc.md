@@ -6,12 +6,51 @@ CDC with NiFi, Kafka Connect, Kafka, Cloudera Data in Motion
 
 ![cdcdiagram](https://github.com/tspannhw/FLaNK-CDC/blob/main/cdckafkaconnectdebeziumnifioracle.png?raw=true)
 
-Video: https://www.youtube.com/watch?v=NPWglZW3rig
+Video: [https://www.youtube.com/watch?v=NPWglZW3rig](https://www.youtube.com/watch?v=NPWglZW3rig)
 
 
 Since we are out of the office and working remote, I need our relational database records to join us and be sent offsite.   Our physical tables may be empty, but our database ones are not.   Let's get that data streaming and useful.
 
 ![office](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/officemeeting.jpg?raw=true)
+
+CDC is well defined in wikipedia and in this article:
+
+* [https://www.confluent.io/learn/change-data-capture/](https://www.confluent.io/learn/change-data-capture/)
+* [https://en.wikipedia.org/wiki/Change_data_capture](https://en.wikipedia.org/wiki/Change_data_capture)
+
+Sometimes you don't need pure change data capture, sometimes you can just get data when an ID or date increments.   You can do that really easily at scale (including grabbing every table in a database) with Apache NiFi:
+
+* [https://community.cloudera.com/t5/Community-Articles/Incrementally-Streaming-RDBMS-Data-to-Your-Hadoop-DataLake/ta-p/247927](https://community.cloudera.com/t5/Community-Articles/Incrementally-Streaming-RDBMS-Data-to-Your-Hadoop-DataLake/ta-p/247927)
+* [https://community.cloudera.com/t5/Community-Articles/Ingesting-RDBMS-Data-As-New-Tables-Arrive-Automagically-into/ta-p/246214](https://community.cloudera.com/t5/Community-Articles/Ingesting-RDBMS-Data-As-New-Tables-Arrive-Automagically-into/ta-p/246214)
+* [https://community.cloudera.com/t5/Community-Articles/Incremental-Fetch-in-NiFi-with-QueryDatabaseTable/ta-p/247073](https://community.cloudera.com/t5/Community-Articles/Incremental-Fetch-in-NiFi-with-QueryDatabaseTable/ta-p/247073)
+
+If you have MySQL/MariaDB simple CDC, then you can do it with Apache NiFi:
+
+* [https://community.cloudera.com/t5/Community-Articles/Simple-Change-Data-Capture-CDC-with-SQL-Selects-via-Apache/ta-p/308390](https://community.cloudera.com/t5/Community-Articles/Simple-Change-Data-Capture-CDC-with-SQL-Selects-via-Apache/ta-p/308390)
+* [https://community.cloudera.com/t5/Community-Articles/Change-Data-Capture-CDC-with-Apache-NiFi-Part-1-of-3/ta-p/246623](https://community.cloudera.com/t5/Community-Articles/Change-Data-Capture-CDC-with-Apache-NiFi-Part-1-of-3/ta-p/246623)
+* [https://community.cloudera.com/t5/Community-Articles/Change-Data-Capture-CDC-with-Apache-NiFi-Part-2-of-3/ta-p/246519](https://community.cloudera.com/t5/Community-Articles/Change-Data-Capture-CDC-with-Apache-NiFi-Part-2-of-3/ta-p/246519)
+* [https://community.cloudera.com/t5/Community-Articles/Change-Data-Capture-CDC-with-Apache-NiFi-Part-3-of-3/ta-p/246482 ](https://community.cloudera.com/t5/Community-Articles/Change-Data-Capture-CDC-with-Apache-NiFi-Part-3-of-3/ta-p/246482 )
+
+For real CDC, the best open source option is using Debezium along with Kafka and Kafka Connect.  CDC Debezium KConnectors for PostgreSQL, MySQL, SQL Server, DB2, and Oracle.
+
+[https://community.cloudera.com/t5/Community-Articles/MySQL-CDC-with-Kafka-Connect-Debezium-in-CDP-Public-Cloud/ta-p/345321](https://community.cloudera.com/t5/Community-Articles/MySQL-CDC-with-Kafka-Connect-Debezium-in-CDP-Public-Cloud/ta-p/345321)
+
+
+=====
+https://github.com/rueian/pgcapture
+
+https://maxwells-daemon.io/
+
+https://docs.airbyte.com/understanding-airbyte/cdc/
+https://airbyte.com/blog/change-data-capture-definition-methods-and-benefits
+
+https://debezium.io/
+https://debezium.io/documentation/reference/2.2/
+
+
+
+
+
 
 **Data Flow**
 
