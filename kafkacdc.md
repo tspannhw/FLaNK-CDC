@@ -36,19 +36,12 @@ For real CDC, the best open source option is using Debezium along with Kafka and
 [https://community.cloudera.com/t5/Community-Articles/MySQL-CDC-with-Kafka-Connect-Debezium-in-CDP-Public-Cloud/ta-p/345321](https://community.cloudera.com/t5/Community-Articles/MySQL-CDC-with-Kafka-Connect-Debezium-in-CDP-Public-Cloud/ta-p/345321)
 
 
-=====
-https://github.com/rueian/pgcapture
+Some other options are:
 
-https://maxwells-daemon.io/
-
-https://docs.airbyte.com/understanding-airbyte/cdc/
-https://airbyte.com/blog/change-data-capture-definition-methods-and-benefits
-
-https://debezium.io/
-https://debezium.io/documentation/reference/2.2/
-
-
-
+* https://github.com/rueian/pgcapture
+* https://maxwells-daemon.io/
+* https://docs.airbyte.com/understanding-airbyte/cdc/
+* https://airbyte.com/blog/change-data-capture-definition-methods-and-benefits
 
 
 
@@ -258,6 +251,8 @@ CREATE TABLE newjerseybus
 * https://github.com/tspannhw/CloudDemo2021
 * https://hub.docker.com/r/gvenzl/oracle-free 
 * https://blogs.oracle.com/coretec/post/oracle-database-with-docker 
+* https://debezium.io/
+* https://debezium.io/documentation/reference/2.2/
 
 
 ![nifieverywhere](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/timshadownifi.png?raw=true)
@@ -333,7 +328,7 @@ CREATE TABLE TSPANN.NEWJERSEYBUS (
 CREATE UNIQUE INDEX SYS_C008226 ON TSPANN.NEWJERSEYBUS (UUID);
 
 ````
-Tim Spann
+
 
 
 #### Looking at NiFI REST Calls / Internals
@@ -350,3 +345,5 @@ Tim Spann
 ![cat2](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/IMG_7658.jpg?raw=true)
 
 
+
+### 2023 Tim Spann
