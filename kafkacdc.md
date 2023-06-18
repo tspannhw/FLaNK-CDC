@@ -217,6 +217,8 @@ CREATE TABLE newjerseybus
 
 * https://github.com/tspannhw/ApacheConAtHome2020
 * https://github.com/tspannhw/CloudDemo2021
+* https://hub.docker.com/r/gvenzl/oracle-free 
+* https://blogs.oracle.com/coretec/post/oracle-database-with-docker 
 
 
 ![nifieverywhere](https://github.com/tspannhw/FLaNK-CDC/blob/main/images/timshadownifi.png?raw=true)
