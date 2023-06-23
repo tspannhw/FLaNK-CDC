@@ -9,7 +9,7 @@ CREATE TABLE public.newjerseybus (
 	companyname varchar(255) NULL,
 	uuid varchar(255) NULL,
 	servicename varchar(255) NULL
-);
+); 
 
 CREATE TABLE public.newjerseytransit (
 	title varchar(255) NOT NULL,
@@ -25,3 +25,4 @@ CREATE TABLE public.newjerseytransit (
   CONSTRAINT "primary" PRIMARY KEY (uuid),
   UNIQUE (uuid)
 );
+
