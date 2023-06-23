@@ -97,6 +97,55 @@ CREATE TABLE `postgres_cdc_newjerseybus` (
 
 ````
 
+####
+```
+CREATE TABLE postgres_cdc_newjerseybus (
+  `title` VARCHAR(2147483647),
+  `description` VARCHAR(2147483647),
+  `link` VARCHAR(2147483647),
+  `guid` VARCHAR(2147483647),
+  `advisoryalert` VARCHAR(2147483647),
+  `pubdate` VARCHAR(2147483647),
+  `ts` VARCHAR(2147483647),
+  `companyname` VARCHAR(2147483647),
+  `uuid` VARCHAR(2147483647),
+  `servicename` VARCHAR(2147483647)
+) WITH (
+  'hostname' = '192.168.1.153',
+  'password' = 'tspann',
+  'decoding.plugin.name' = 'pgoutput',
+  'connector' = 'postgres-cdc',
+  'port' = '5432',
+  'database-name' = 'tspann',
+  'schema-name' = 'public',
+  'table-name' = 'newjerseybus',
+  'username' = 'tspann'
+)
+
+CREATE TABLE postgres_jdbc_newjerseytransit (
+  `title` VARCHAR(2147483647),
+  `description` VARCHAR(2147483647),
+  `link` VARCHAR(2147483647),
+  `guid` VARCHAR(2147483647),
+  `advisoryalert` VARCHAR(2147483647),
+  `pubdate` VARCHAR(2147483647),
+  `ts` VARCHAR(2147483647),
+  `companyname` VARCHAR(2147483647),
+  `uuid` VARCHAR(2147483647) ,
+  `servicename` VARCHAR(2147483647),
+  primary key (uuid) not enforced
+) WITH (
+  'connector' = 'jdbc',
+  'table-name' = 'newjerseytransit',
+  'url' = 'jdbc:postgresql://192.168.1.153:5432/tspann',
+  'username' = 'tspann',
+  'password' = 'tspann'
+) 
+
+
+insert into postgres_jdbc_newjerseytransit
+select * from postgres_cdc_newjerseybus
+```
 
 ### Example Bus Data
 
