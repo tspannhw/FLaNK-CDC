@@ -147,6 +147,49 @@ insert into postgres_jdbc_newjerseytransit
 select * from postgres_cdc_newjerseybus
 ```
 
+### Let's send those CDC records to Kafka via upsert-kafka
+
+Reference: https://nightlies.apache.org/flink/flink-docs-master/docs/connectors/table/upsert-kafka/
+
+
+#### Create an upsert-kafka table as a sink with topic kafka_newjerseybus
+
+```
+
+CREATE TABLE  `upsert_kafka_newjerseybus` (
+  `title` String,
+  `description` String,
+  `link` String,
+  `guid` String,
+  `advisoryAlert` String,
+  `pubDate` String,
+  `ts` String,
+  `companyname` String,
+  `uuid` String,
+  `servicename` String,
+   `eventTimestamp` TIMESTAMP(3),
+   WATERMARK FOR `eventTimestamp` AS `eventTimestamp` - INTERVAL '5' SECOND,
+   PRIMARY KEY (uuid) NOT ENFORCED
+) WITH (
+  'connector' = 'upsert-kafka', 
+  'topic' = 'kafka_newjerseybus', 
+  'properties.bootstrap.servers' = 'kafka:9092',
+  'key.format' = 'json',
+  'value.format' = 'json'
+  );
+
+````
+
+### Insert records
+
+````
+insert into  upsert_kafka_newjerseybus
+select `title`, `description`, `link`, guid, advisoryalert as advisoryAlert,
+    pubdate as pubDate, ts, companyname, uuid, servicename, LOCALTIMESTAMP as eventTimeStamp
+from postgres_cdc_newjerseybus
+
+````
+
 ### Example Bus Data
 
 |title|description|link|guid|advisoryalert|pubdate|ts|companyname|uuid|servicename|
