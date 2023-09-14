@@ -26,7 +26,14 @@ https://github.com/tspannhw/FLaNK-CDC/blob/main/kafkacdc.md
 
 * https://docs.cloudera.com/cdf-datahub/7.2.14/ssb-querying-data/topics/csa-ssb-kafka-kudu-join.html
 * https://blog.cloudera.com/projects-in-sql-stream-builder/
+* https://github.com/asdaraujo/edge2ai-workshop/blob/trunk/workshop_nifi.adoc
 
 ### Flink SQL Kudu
 
+````
+
+
 `kudu`.`default_database`.`default.sensors`
+
+
+````
