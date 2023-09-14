@@ -86,8 +86,9 @@ CREATE TABLE `ssb`.`ssb_default`.`iotenriched` (
   'topic' = 'iot_enriched',
   'scan.startup.mode' = 'group-offsets',
   'properties.auto.offset.reset' = 'earliest',
-  'properties.group.id' = 'ssbconsumeriot1'
+  'properties.group.id' = 'iotenrichedssbreader1'
 )
+
 
 
 insert into `kudu`.`default_database`.`default.sensors`
